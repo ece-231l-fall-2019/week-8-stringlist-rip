@@ -57,5 +57,6 @@ class StringList
 	{
 		return _data == 0;
 	}
+
 };
 
