@@ -8,54 +8,35 @@ class StringList
 	typedef struct llist {
 		std::string str;
 		struct llist *next;
+		struct llist *prev;
 	} llist;
 
-	llist *_data;
-
+	llist *head;
+	llist *tail;
+	int _length = 0;
 	public:
-	
+
 	// default constructor
-	StringList()
-	{
-		_data = 0;
-	}
+	StringList();
 
 	// copy constructor
 	StringList(const StringList&);
 
 	// destructor
 	~StringList()
-	{
-		while(!empty())
-			pop_front();
-	}
 
 	// copy operator
 	StringList& operator=(const StringList&);
 
-	std::string& front()
-	{
-		return _data->str;
-	}
+	int size();
+	std::string& front();
+	std::string& back();
 
-	void push_front(std::string str)
-	{
-		llist *newItem = new llist;
-		newItem->str = str;
-		newItem->next = _data;
-		_data = newItem;
-	}
+	void push_front(std::string str);
+	void push_back(std::string str);
 
-	void pop_front()
-	{
-		llist *front = _data;
-		_data = front->next;
-		delete front;
-	}
+	void pop_front();
+	void pop_back();
 
-	bool empty() const
-	{
-		return _data == 0;
-	}
+	bool empty() const;
 };
-
