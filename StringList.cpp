@@ -3,8 +3,8 @@
 
 StringList::StringList()
 {
-  this->head = NULL;
-  this->tail = NULL;
+  head = NULL;
+  tail = NULL;
 }
 
 StringList::StringList(const StringList&);
@@ -20,9 +20,9 @@ StringList& StringList::operator=(const StringList&)
 
 }
 
-int StringList::size()
+int StringList::getSize()
 {
-  return _length;
+  return _size;
 }
 std::string& StringList::front()
 {
@@ -39,8 +39,13 @@ void push_front(std::string str)
   newItem->str = str;
   newItem->next = head;
   newItem->prev = NULL;
-  head = newItem;
-  _length++;
+  if (head != NULL)
+    head->prev = NewItem;
+  if (tail == NULL)
+    tail = NewItem;
+  head = newItem; //update head
+  _size++;
+
 }
 void push_back(std::string str)
 {
@@ -48,25 +53,36 @@ void push_back(std::string str)
     NewItem->str = str;
     NewItem->next = NULL;
     NewItem->prev = tail;
-    tail = NewItem;
-    _length++;
+    if (tail != NULL)
+      tail->next = NewItem;
+    if (head == NULL)
+      head = NewItem;
+    tail = NewItem; //update tail
+    _size++;
 }
 
 void pop_front()
 {
   llist *ptr = head;
   head = head->next;
-  head->prev = NULL;
+  //head->prev = NULL;
+  if (head != NULL)
+    head->prev = head->prev->prev;
+  else
+    tail = NULL;
   delete ptr;
-  length--;
+  _size--;
 }
 void pop_back()
 {
   llist *ptr = tail;
   tai = tail->prev;
-  tail->next = NULL;
+  if (tail != NULL)
+    tail->next = tail->prev->prev;
+  else
+    head = NULL;
   delete ptr;
-  length--;
+  _size--;
 }
 
 bool StringList::empty() const
@@ -77,4 +93,21 @@ bool StringList::clear() const
 {
   while(!empty())
     pop_front();
+}
+
+void StringList::unique()
+{
+  for(llist *ptr = head; ptr != NULL; ptr = ptr->next)
+  {
+    while (ptr->next != NULL) && (ptr->str = ptr->next->str)
+      {
+        llist *saveptr = ptr->next
+        ptr->next = saveptr->next;
+        if (saveptr->next != NULL)
+          saveptr->next->prev = ptr;
+        else back = ptr;
+        delete saveptr;
+        _size--;
+      }
+  }
 }

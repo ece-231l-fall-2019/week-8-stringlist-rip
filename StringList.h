@@ -13,7 +13,7 @@ class StringList
 
 	llist *head;
 	llist *tail;
-	int _length = 0;
+	int _size = 0;
 	public:
 
 	// default constructor
@@ -28,7 +28,7 @@ class StringList
 	// copy operator
 	StringList& operator=(const StringList&);
 
-	int size();
+	int getSize();
 	std::string& front();
 	std::string& back();
 
@@ -38,5 +38,7 @@ class StringList
 	void pop_front();
 	void pop_back();
 
+	void deleteNode()
 	bool empty() const;
+	bool clear();
 };
