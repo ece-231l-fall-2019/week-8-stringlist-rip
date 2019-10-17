@@ -26,8 +26,7 @@ class StringList
 	// destructor
 	~StringList()
 	{
-		while(!empty())
-			pop_front();
+		clear();
 	}
 
 	// copy operator
@@ -36,6 +35,11 @@ class StringList
 	std::string& front()
 	{
 		return _data->str;
+	}
+	std::string& back()
+	{
+		for(llist = _data; llist != null;llist->next)
+		return llist;		
 	}
 
 	void push_front(std::string str)
@@ -57,6 +61,26 @@ class StringList
 	{
 		return _data == 0;
 	}
+	void clear()
+	{
+	while(!empty())
+		pop_front();
+	}
+	int StringList::size()
+	{
+	size = 0;
+	if(size == null)
+		return null;
+
+	for(llist *head = _data; head->next != NULL; size++)
+		{
+		head = head->next;
+		}	
+	return size;
+	}
+
+	
+	
 
 };
 
