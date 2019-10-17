@@ -17,7 +17,12 @@ StringList::~StringList()
 
 StringList& StringList::operator=(const StringList&)
 {
-
+string *temp = StringList;
+while(temp._data != StringList._data)
+{
+*temp++ = *StringList++;
+}
+return *this;
 }
 
 int StringList::size()
@@ -39,6 +44,10 @@ void push_front(std::string str)
   newItem->str = str;
   newItem->next = head;
   newItem->prev = NULL;
+    if(head !=0)
+	    head->next=NewList
+    if(back==0)
+	    back=NewItem;
   head = newItem;
   _length++;
 }
@@ -48,6 +57,10 @@ void push_back(std::string str)
     NewItem->str = str;
     NewItem->next = NULL;
     NewItem->prev = tail;
+    if(tail !=0)
+	    tail->next=NewList;
+    if(front==0)
+	    front=NewItem;
     tail = NewItem;
     _length++;
 }
@@ -56,7 +69,12 @@ void pop_front()
 {
   llist *ptr = head;
   head = head->next;
-  head->prev = NULL;
+  if(head){
+  head->prev = head->prev->prev;// it was head ->prev = null;
+  }
+  else{
+	  back=0;
+}
   delete ptr;
   length--;
 }
@@ -77,4 +95,32 @@ bool StringList::clear() const
 {
   while(!empty())
     pop_front();
+}
+void StringList::reverse()
+{
+string temp;
+for(*ptr = front, ptr != 0; *ptr=ptr->tail)
+	{
+	temp=ptr->new;
+	ptr->head = ptr ->tail;
+	ptr-> = temp;
+	}	
+	
+}
+void StringList::unique();
+{
+for(llist *ptr = front;ptr!=0;ptr=ptr->next;
+{	while(ptr->next != 0 && ptr->str==ptr->next->str)
+	{
+	llist *saveptr = ptr->next;
+	ptr->next= ptr->saveptr->next;
+	if(saveptr->next != 0)
+	saveptr->next->prev= ptr;
+	else
+	back = ptr;
+	delete saveptr;
+	length--;
+	}
+
+}
 }
