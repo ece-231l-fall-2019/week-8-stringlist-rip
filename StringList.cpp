@@ -98,14 +98,16 @@ bool StringList::clear() const
 }
 void StringList::reverse()
 {
-string temp;
-for(*ptr = front, ptr != 0; *ptr=ptr->tail)
+llist *temp;
+for(llist *ptr = front, ptr != 0; ptr=ptr->prev)
 	{
-	temp=ptr->new;
-	ptr->head = ptr ->tail;
-	ptr-> = temp;
+	temp=ptr;
+	ptr->next = ptr ->prev
+	ptr->prev = temp;
 	}	
-	
+temp=back;
+back=front;
+front=temp;	
 }
 void StringList::unique();
 {
