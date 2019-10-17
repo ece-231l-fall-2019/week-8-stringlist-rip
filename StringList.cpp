@@ -15,14 +15,14 @@ StringList::~StringList()
     pop_front();
 }
 
-StringList& StringList::operator=(const StringList&)
+StringList& StringList::operator=(const StringList& other)
 {
-string *temp = StringList;
-while(temp._data != StringList._data)
-{
-*temp++ = *StringList++;
-}
-return *this;
+ clear();
+ for(llist *ptr = other.head; ptr != NULL; ptr = ptr->next)
+ {
+	push_back(ptr->str);
+ }	
+ return *this;
 }
 
 int StringList::getSize()
