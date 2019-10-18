@@ -21,7 +21,7 @@ StringList& StringList::operator=(const StringList& other)
  for(llist *ptr = other.head; ptr != NULL; ptr = ptr->next)
  {
 	push_back(ptr->str);
- }	
+ }
  return *this;
 }
 
@@ -103,16 +103,16 @@ bool StringList::clear() const
 
 void StringList::reverse()
 {
-llist *temp;
-for(llist *ptr = front, ptr != 0; ptr=ptr->prev)
+  llist *temp;
+  for(llist *ptr = front, ptr != 0; ptr = ptr->prev)
 	{
-	temp=ptr;
-	ptr->next = ptr ->prev
-	ptr->prev = temp;
-	}	
-temp=back;
-back=front;
-front=temp;	
+	  temp = ptr;
+	  ptr->next = ptr->prev
+	  ptr->prev = temp;
+	}
+  temp = back;
+  back = front;
+  front = temp;
 }
 
 void StringList::unique()
