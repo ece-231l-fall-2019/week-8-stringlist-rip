@@ -28,11 +28,9 @@ class StringList
 	// copy operator
 	StringList& operator=(const StringList& other);
 
-	std::string& front()
-	std::string& back();
-	int getSize();
 	std::string& front();
 	std::string& back();
+	int getSize();
 
 	void push_front(std::string str);
 	void push_back(std::string str);
@@ -42,4 +40,7 @@ class StringList
 
 	bool empty() const;
 	bool clear();
+
+	void unique();
+	void reverse();
 };

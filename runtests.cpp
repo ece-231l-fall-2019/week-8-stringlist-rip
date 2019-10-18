@@ -3,7 +3,7 @@
 // change the value below to 1 to run tests against your StringList class.
 // change the value below to 0 to run tests against the built in std::list.
 
-#if 1 
+#if 1
 #include "StringList.h"
 #else
 #include <list>
@@ -33,7 +33,7 @@ int main()
 	a.push_front("D");
 	a.push_back("E");
 
-	Assert(a._size() == 5, "size method");
+	Assert(a.getSize() == 5, "size method");
 
 	Assert(a.front() == "D", "front method");
 	a.pop_front();
@@ -45,7 +45,7 @@ int main()
 	Assert(a.front() == "A", "front method");
 	a.pop_back();
 	Assert(a.back() == "A", "back method");
-	
+
 	StringList x;
 	x.push_back("H");
 	x.push_back("e");
@@ -58,13 +58,13 @@ int main()
 	x.push_back("v");
 	x.push_back("i");
 	x.push_back("d");
-	Assert(x._size==11, "size");
+	Assert(x.getSize()==11, "size");
 	x.reverse();
 	//std::cout<<x<<std::endl;
 	x.reverse();
 	x.unique();
 	//std::cout<<x<<std::endl;
-	Assert(x._size==10, "size");
+	Assert(x.getSize() == 10, "size");
 	x.pop_back();
 	Assert(x.back()== "i", "pop back");
 	x.pop_front();
@@ -91,8 +91,6 @@ int main()
 	c.push_back("c");
 	//c.unique;
 	//Assert(c._size == 1, "unique with 5 c's");
-	
+
 	return 0;
 }
-
-
