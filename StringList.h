@@ -1,36 +1,37 @@
 #include <iostream>
 #include <string>
+#include <iostream>
 
 class StringList
 {
 	private:
-	int _size;
+	size_t _size;
 	typedef struct llist {
 		std::string str;
 		struct llist *next;
 		struct llist *prev;
 	} llist;
 
-	llist *head;
-	llist *tail;
+	llist *_head;
+	llist *_tail;
 
 	public:
 
 	// default constructor
 	StringList();
 	// copy constructor
-	StringList(const StringList&);
+	StringList(const StringList& other);
 	// destructor
 	~StringList();
 
 	// copy operator
 	StringList& operator=(const StringList& other);
 
-	int getSize();
+	size_t getSize();
 	std::string& front();
 	std::string& back();
 	bool empty() const;
-	bool clear() const;
+	void clear();
 
 	void push_front(std::string str);
 	void push_back(std::string str);
