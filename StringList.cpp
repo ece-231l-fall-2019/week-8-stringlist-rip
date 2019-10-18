@@ -1,4 +1,4 @@
-#inlude "StringList.h"
+#include "StringList.h"
 #include <string>
 
 StringList::StringList()
@@ -7,7 +7,7 @@ StringList::StringList()
   tail = NULL;
 }
 
-StringList::StringList(const StringList&);
+//StringList::StringList(const StringList&);
 
 StringList::~StringList()
 {
@@ -38,7 +38,7 @@ std::string& StringList::back()
   return tail->str;
 }
 
-void push_front(std::string str)
+void StringList::push_front(std::string str)
 {
   llist *newItem = new llist;
   newItem->str = str;
@@ -50,10 +50,8 @@ void push_front(std::string str)
     tail = NewItem;
   head = newItem; //update head
   _size++;
-
-
 }
-void push_back(std::string str)
+void StringList::push_back(std::string str)
 {
     llist *newItem = new llist;
     NewItem->str = str;
@@ -67,7 +65,7 @@ void push_back(std::string str)
     _size++;
 }
 
-void pop_front()
+void StringList::pop_front()
 {
   llist *ptr = head;
   head = head->next;
@@ -79,7 +77,7 @@ void pop_front()
   delete ptr;
   _size--;
 }
-void pop_back()
+void StringList::pop_back()
 {
   llist *ptr = tail;
   tai = tail->prev;
@@ -104,10 +102,10 @@ bool StringList::clear() const
 void StringList::reverse()
 {
   llist *temp;
-  for(llist *ptr = front, ptr != 0; ptr = ptr->prev)
+  for(llist *ptr = front; ptr != 0; ptr = ptr->prev)
 	{
 	  temp = ptr;
-	  ptr->next = ptr->prev
+	  ptr->next = ptr->prev;
 	  ptr->prev = temp;
 	}
   temp = back;
@@ -119,9 +117,9 @@ void StringList::unique()
 {
   for(llist *ptr = head; ptr != NULL; ptr = ptr->next)
   {
-    while (ptr->next != NULL) && (ptr->str = ptr->next->str)
+    while ((ptr->next != NULL) && (ptr->str = ptr->next->str))
       {
-        llist *saveptr = ptr->next
+        llist *saveptr = ptr->next;
         ptr->next = saveptr->next;
         if (saveptr->next != NULL)
           saveptr->next->prev = ptr;
