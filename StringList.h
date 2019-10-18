@@ -18,10 +18,8 @@ class StringList
 
 	// default constructor
 	StringList();
-
 	// copy constructor
 	StringList(const StringList&);
-
 	// destructor
 	~StringList()
 
@@ -31,6 +29,8 @@ class StringList
 	int getSize();
 	std::string& front();
 	std::string& back();
+	bool empty() const;
+	bool clear();
 
 	void push_front(std::string str);
 	void push_back(std::string str);
@@ -38,7 +38,5 @@ class StringList
 	void pop_front();
 	void pop_back();
 
-	void deleteNode()
-	bool empty() const;
-	bool clear();
+	void unique();
 };
