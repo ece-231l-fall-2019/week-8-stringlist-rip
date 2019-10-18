@@ -15,9 +15,14 @@ StringList::~StringList()
     pop_front();
 }
 
-StringList& StringList::operator=(const StringList&)
+StringList& StringList::operator=(const StringList& other)
 {
-
+ clear();
+ for(llist *ptr = other.head; ptr != NULL; ptr = ptr->next)
+ {
+	push_back(ptr->str);
+ }	
+ return *this;
 }
 
 int StringList::getSize()
@@ -45,6 +50,7 @@ void push_front(std::string str)
     tail = NewItem;
   head = newItem; //update head
   _size++;
+
 
 }
 void push_back(std::string str)
@@ -93,6 +99,20 @@ bool StringList::clear() const
 {
   while(!empty())
     pop_front();
+}
+
+void StringList::reverse()
+{
+llist *temp;
+for(llist *ptr = front, ptr != 0; ptr=ptr->prev)
+	{
+	temp=ptr;
+	ptr->next = ptr ->prev
+	ptr->prev = temp;
+	}	
+temp=back;
+back=front;
+front=temp;	
 }
 
 void StringList::unique()
