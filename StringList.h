@@ -41,4 +41,5 @@ class StringList
 
 	void unique();
 	void reverse();
+	void printstr();
 };

@@ -109,16 +109,22 @@ void StringList::clear()
 
 void StringList::reverse()
 {
-  llist *temp;
-  for(llist *ptr = _head; ptr != 0; ptr = ptr->prev)
-	{
-	  temp = ptr;
-	  ptr->next = ptr->prev;
-	  ptr->prev = temp;
-	}
-  temp = _tail;
+  //if(_size <= 1 )
+    //return;
+  llist *ptr = _head;
+  llist *tmp = NULL;
+  while (ptr != NULL)
+  {
+    tmp = ptr->prev;
+    ptr->prev = ptr->next;
+    ptr->next = tmp;
+    ptr = ptr->prev;
+  }
+  if (tmp != NULL)
+    tmp = tmp->prev;
   _tail = _head;
-  _head = temp;
+  _head = tmp;
+
 }
 
 void StringList::unique()
@@ -139,4 +145,12 @@ void StringList::unique()
         _size--;
       }
     }
+}
+
+void StringList::printstr()
+{
+  for (llist *ptr = _head; ptr != NULL; ptr = ptr->next)
+  {
+    std::cout << ptr->str << std::endl;
+  }
 }
