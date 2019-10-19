@@ -121,19 +121,22 @@ void StringList::reverse()
   _head = temp;
 }
 
-/*void StringList::unique()
+void StringList::unique()
 {
   for(llist *ptr = _head; ptr != NULL; ptr = ptr->next)
-  {
-    while ((ptr->next != NULL) && (ptr->str = ptr->next->str))
+    {
+    while ((ptr->next != NULL) && (ptr->str == ptr->next->str))
       {
         llist *saveptr = ptr->next;
         ptr->next = saveptr->next;
+
         if (saveptr->next != NULL)
           saveptr->next->prev = ptr;
-        else _tail = ptr;
+        else
+          _tail = ptr;
+
         delete saveptr;
         _size--;
       }
-  }
-}*/
+    }
+}
