@@ -60,10 +60,10 @@ int main()
 	x.push_back("d");
 	Assert(x.getSize()==11, "size");
 	x.reverse();
-	//std::cout<<x<<std::endl;
+	//std::cout<<x<<std::endl; // trying to print it out
 	x.reverse();
-	x.unique();
-	//std::cout<<x<<std::endl;
+	//x.unique();
+	//std::cout<<x<<std::endl;//tring to print it out
 	Assert(x.getSize() == 10, "size");
 	x.pop_back();
 	Assert(x.back()== "i", "pop back");
@@ -82,7 +82,7 @@ int main()
 	z.reverse();
 	z.pop_front();
 	y=z;
-	//std::cout<<y<<std::endl;
+	//std::cout<<y<<std::endl; // tring to print it out
 	StringList c;
 	c.push_back("c");
 	c.push_back("c");
