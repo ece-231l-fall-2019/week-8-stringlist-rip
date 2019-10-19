@@ -44,7 +44,7 @@ int main()
 	a.pop_back();
 	Assert(a.back() == "A", "back method");
 
-	StringList x;
+StringList x;
 x.push_back("H");
 x.push_back("e");
 x.push_back("l");
@@ -94,7 +94,7 @@ c.push_back("c");
 c.push_back("c");
 c.push_back("c");
 c.push_back("c");
-c.unique;
+c.unique();
 Assert(c.getSize() == 1, "unique with 5 c's");
 
 
@@ -118,7 +118,8 @@ Assert(j.getSize() == 13, "size");
 j.reverse();
 Assert(j.back() == "J", "reverse back");
 Assert(j.front() == "A", "reverse front");
-
+j.unique();
+Assert(j.getSize() == 12, "unique");
 
 	return 0;
 }
