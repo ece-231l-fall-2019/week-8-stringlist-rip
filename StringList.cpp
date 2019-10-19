@@ -23,7 +23,7 @@ StringList::~StringList()
 
 StringList& StringList::operator=(const StringList& other)
 {
- clear();
+ clear(); //clear a List first
  for(llist *ptr = other._head; ptr != NULL; ptr = ptr->next)
  {
 	push_back(ptr->str);
@@ -76,7 +76,6 @@ void StringList::pop_front()
 {
   llist *ptr = _head;
   _head = _head->next;
-  //head->prev = NULL;
   if (_head != NULL)
     _head->prev = _head->prev->prev;
   else
@@ -104,13 +103,10 @@ void StringList::clear()
 {
   while(!empty())
     pop_front();
-  _size = 0;
 }
 
 void StringList::reverse()
 {
-  //if(_size <= 1 )
-    //return;
   llist *ptr = _head;
   llist *tmp = NULL;
   while (ptr != NULL)
@@ -122,8 +118,8 @@ void StringList::reverse()
   }
   if (tmp != NULL)
     tmp = tmp->prev;
-  _tail = _head;
-  _head = tmp;
+  _tail = _head; //update tail
+  _head = tmp; //update head
 
 }
 
