@@ -58,10 +58,10 @@ x.push_back("i");
 x.push_back("d");
 Assert(x.getSize() == 11, "size");
 x.reverse();
-x.printstr();
+//x.printstr();
 x.reverse();
 x.unique();
-//std::cout<<x<<std::endl;//tring to print it out
+//x.printstr();
 Assert(x.getSize() == 10, "size");
 x.pop_back();
 Assert(x.back()== "i", "pop back");
@@ -79,18 +79,46 @@ y.push_back("e");
 
 StringList z;
 z=y;
-//z.reverse();
+z.reverse();
 z.pop_front();
-y=z;
-//std::cout<<y<<std::endl; // tring to print it out
+Assert(z.front() == "s", "pop front with reverse");
+z.pop_back();
+Assert(z.back() == "h", "pop back");
+//z.printstr();
+
+
+
 StringList c;
 c.push_back("c");
 c.push_back("c");
 c.push_back("c");
 c.push_back("c");
 c.push_back("c");
-//c.unique;
-//Assert(c._size == 1, "unique with 5 c's");
+c.unique;
+Assert(c.getSize() == 1, "unique with 5 c's");
+
+
+StringList j;
+j.push_front("J");
+Assert(j.front() == "J", "push front");
+Assert(j.back() == j.front(), "checking to see if front and back == with 1 elm");
+j.push_back("E");
+j.push_back("R");
+j.push_back("R");
+j.push_back("E");
+j.push_back("Y");
+j.push_back(" ");
+j.push_back("G");
+j.push_back("A");
+j.push_back("R");
+j.push_back("C");
+j.push_back("I");
+j.push_back("A");
+Assert(j.getSize() == 13, "size");
+j.reverse();
+Assert(j.back() == "J", "reverse back");
+Assert(j.front() == "A", "reverse front");
+
 
 	return 0;
 }
