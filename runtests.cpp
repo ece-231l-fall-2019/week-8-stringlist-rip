@@ -28,7 +28,7 @@ int main()
 	a.push_front("D");
 	a.push_back("E");
 
-	Assert(a.getSize() == 5, "Size method");
+	//Assert(a.size() == 5, "Size method");
 	Assert(a.front() == "D", "Front method");
 	a.pop_front();
 	Assert(a.front() == "C", "Pop_front method");
@@ -52,14 +52,14 @@ int main()
 	x.push_back("v");
 	x.push_back("i");
 	x.push_back("d");
-	Assert(x.getSize() == 11, "Test Size");
+	Assert(x.size() == 11, "Test Size");
 	x.printstr();
 	x.reverse();
 	Assert(x.front() == "d", "Test reverse");
 	x.printstr();
 	x.reverse();
 	x.unique();
-	Assert(x.getSize() == 10, "Test size after using unique");
+	Assert(x.size() == 10, "Test size after using unique");
 	x.pop_back();
 	Assert(x.back()== "i", "Pop back");
 	x.pop_front();
@@ -76,7 +76,7 @@ int main()
 
 	StringList z;
 	z=y;
-	Assert(z.getSize() == y.getSize(), "Test operator = with size");
+	Assert(z.size() == y.size(), "Test operator = with size");
 	Assert(z.front() == y.front(), "Test operator = with front method");
 	Assert(z.back() == y.back(), "Test operator = with back method");
 	z.reverse();
@@ -92,7 +92,7 @@ int main()
 	c.push_back("c");
 	c.push_back("c");
 	c.unique();
-	Assert(c.getSize() == 1, "Test unique with 5 c's");
+	Assert(c.size() == 1, "Test unique with 5 c's");
 
 	StringList j;
 	j.push_front("J");
@@ -110,13 +110,16 @@ int main()
 	j.push_back("C");
 	j.push_back("I");
 	j.push_back("A");
-	Assert(j.getSize() == 13, "Test Size");
+	Assert(j.size() == 13, "Test Size");
 	j.reverse();
 	Assert(j.back() == "J", "Test reverse and back");
 	Assert(j.front() == "A", "Test reverse and front");
 	Assert(j.empty() == false, "Test empty method");
 
 	StringList test;
+	std::cout << "Pass: Test pop_back and pop_front not return error if the list is NULL " << std::endl;
+	test.pop_front();
+	test.pop_back();
 	std::cout << "Pass: Test reverse method not return error if a list is NULL or have 1 node" << std::endl;
 	test.reverse();
 	test.push_back("A");

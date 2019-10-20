@@ -15,18 +15,19 @@ class StringList
 	llist *_tail;
 
 	public:
-
 	// default constructor
 	StringList();
 	// copy constructor
 	StringList(const StringList& other);
 	// destructor
 	~StringList();
-
 	// copy operator
 	StringList& operator=(const StringList& other);
 
-	size_t getSize();
+	StringList::llist * getHead() const;
+	StringList::llist * getTail() const;
+	size_t size() const;
+
 	std::string& front();
 	std::string& back();
 	bool empty() const;

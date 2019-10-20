@@ -10,9 +10,9 @@ StringList::StringList()
 }
 StringList::StringList(const StringList& other)
 {
-  _head = other._head;
-  _tail = other._tail;
-  _size = other._size;
+  _head = other.getHead();
+  _tail = other.getTail();
+  _size = other.size();
 }
 StringList::~StringList()
 {
@@ -23,13 +23,20 @@ StringList::~StringList()
 StringList& StringList::operator=(const StringList& other)
 {
  clear(); //clear a List first
- for(llist *ptr = other._head; ptr != NULL; ptr = ptr->next)
+ for(llist *ptr = other.getHead(); ptr != NULL; ptr = ptr->next)
 	   push_back(ptr->str);
  _size = other._size;
  return *this;
 }
-
-size_t StringList::getSize()
+StringList::llist * StringList::getHead() const
+{
+  return _head;
+}
+StringList::llist * StringList::getTail() const
+{
+  return _tail;
+}
+size_t StringList::size() const
 {
   return _size;
 }
@@ -40,6 +47,15 @@ std::string& StringList::front()
 std::string& StringList::back()
 {
   return _tail->str;
+}
+bool StringList::empty() const
+{
+  return _head == NULL;
+}
+void StringList::clear()
+{
+  while(!empty())
+    pop_front();
 }
 
 void StringList::push_front(std::string str)
@@ -71,17 +87,22 @@ void StringList::push_back(std::string str)
 
 void StringList::pop_front()
 {
-    llist *ptr = _head;
-    _head = _head->next;
-    if (_head != NULL)
-      _head->prev = _head->prev->prev;
-    else
-      _tail = NULL;
-    delete ptr;
-    _size--;
+    if (!empty()) //if list is empty, don't need to pop_front
+    {             //it will return error if not have this condition
+      llist *ptr = _head;
+      _head = _head->next;
+      if (_head != NULL)
+        _head->prev = _head->prev->prev;
+      else
+        _tail = NULL;
+      delete ptr;
+      _size--;
+    }
 }
 void StringList::pop_back()
 {
+  if (!empty()) //if list is empty, don't need to pop_back
+  {             //it will return error if not have this condition
     llist *ptr = _tail;
     _tail = _tail->prev;
     if (_tail != NULL)
@@ -90,16 +111,7 @@ void StringList::pop_back()
       _head = NULL;
     delete ptr;
     _size--;
-}
-
-bool StringList::empty() const
-{
-  return _head == NULL;
-}
-void StringList::clear()
-{
-  while(!empty())
-    pop_front();
+  }
 }
 
 void StringList::reverse()
@@ -108,7 +120,7 @@ void StringList::reverse()
   {
     llist *temp;
     llist *ptr = _head;
-    
+
     while (ptr != NULL)
     {
       temp = ptr->prev;
