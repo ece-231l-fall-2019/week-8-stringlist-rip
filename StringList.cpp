@@ -8,7 +8,6 @@ StringList::StringList()
   _tail = NULL;
   _size = 0;
 }
-
 StringList::StringList(const StringList& other)
 {
   _head = other._head;
@@ -25,9 +24,7 @@ StringList& StringList::operator=(const StringList& other)
 {
  clear(); //clear a List first
  for(llist *ptr = other._head; ptr != NULL; ptr = ptr->next)
- {
-	push_back(ptr->str);
- }
+	   push_back(ptr->str);
  _size = other._size;
  return *this;
 }
@@ -74,30 +71,30 @@ void StringList::push_back(std::string str)
 
 void StringList::pop_front()
 {
-  llist *ptr = _head;
-  _head = _head->next;
-  if (_head != NULL)
-    _head->prev = _head->prev->prev;
-  else
-    _tail = NULL;
-  delete ptr;
-  _size--;
+    llist *ptr = _head;
+    _head = _head->next;
+    if (_head != NULL)
+      _head->prev = _head->prev->prev;
+    else
+      _tail = NULL;
+    delete ptr;
+    _size--;
 }
 void StringList::pop_back()
 {
-  llist *ptr = _tail;
-  _tail = _tail->prev;
-  if (_tail != NULL)
-    _tail->next = _tail->next->next;
-  else
-    _head = NULL;
-  delete ptr;
-  _size--;
+    llist *ptr = _tail;
+    _tail = _tail->prev;
+    if (_tail != NULL)
+      _tail->next = _tail->next->next;
+    else
+      _head = NULL;
+    delete ptr;
+    _size--;
 }
 
 bool StringList::empty() const
 {
-  return (_head == NULL) && (_tail == NULL);
+  return _head == NULL;
 }
 void StringList::clear()
 {
@@ -107,19 +104,23 @@ void StringList::clear()
 
 void StringList::reverse()
 {
-  llist *ptr = _head;
-  llist *tmp = NULL;
-  while (ptr != NULL)
+  if ((!empty()) && (_head->next != NULL)) //check if the list is not empty and not have a single element
   {
-    tmp = ptr->prev;
-    ptr->prev = ptr->next;
-    ptr->next = tmp;
-    ptr = ptr->prev;
+    llist *temp;
+    llist *ptr = _head;
+    
+    while (ptr != NULL)
+    {
+      temp = ptr->prev;
+      ptr->prev = ptr->next;
+      ptr->next = temp;
+      ptr = ptr->prev;
+    }
+
+    temp = temp->prev; //temp become new head
+    _tail = _head;   //update tail
+    _head = temp;     //update head
   }
-  if (tmp != NULL)
-    tmp = tmp->prev;
-  _tail = _head; //update tail
-  _head = tmp; //update head
 
 }
 
@@ -146,7 +147,6 @@ void StringList::unique()
 void StringList::printstr()
 {
   for (llist *ptr = _head; ptr != NULL; ptr = ptr->next)
-  {
-    std::cout << ptr->str << std::endl;
-  }
+      std::cout << ptr->str << " ";
+  std::cout << std::endl;
 }

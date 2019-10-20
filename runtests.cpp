@@ -76,7 +76,9 @@ int main()
 
 	StringList z;
 	z=y;
-	Assert(z.getSize() == y.getSize(), "Test operator =");
+	Assert(z.getSize() == y.getSize(), "Test operator = with size");
+	Assert(z.front() == y.front(), "Test operator = with front method");
+	Assert(z.back() == y.back(), "Test operator = with back method");
 	z.reverse();
 	z.pop_front();
 	Assert(z.front() == "s", "Pop front with reverse");
@@ -94,8 +96,8 @@ int main()
 
 	StringList j;
 	j.push_front("J");
-	Assert(j.front() == "J", "push front");
-	Assert(j.back() == j.front(), "checking to see if front and back == with 1 elm");
+	Assert(j.front() == "J", "Push front");
+	Assert(j.back() == j.front(), "Checking to see if front and back == with 1 elm");
 	j.push_back("E");
 	j.push_back("R");
 	j.push_back("R");
@@ -108,10 +110,17 @@ int main()
 	j.push_back("C");
 	j.push_back("I");
 	j.push_back("A");
-	Assert(j.getSize() == 13, "size");
+	Assert(j.getSize() == 13, "Test Size");
 	j.reverse();
-	Assert(j.back() == "J", "reverse back");
-	Assert(j.front() == "A", "reverse front");
+	Assert(j.back() == "J", "Test reverse and back");
+	Assert(j.front() == "A", "Test reverse and front");
+	Assert(j.empty() == false, "Test empty method");
+
+	StringList test;
+	std::cout << "Pass: Test reverse method not return error if a list is NULL or have 1 node" << std::endl;
+	test.reverse();
+	test.push_back("A");
+	test.reverse();
 
 	StringList davidPlease;
 	davidPlease.push_back("c");
